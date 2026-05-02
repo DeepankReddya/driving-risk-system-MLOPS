@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+.env
+
+# Models (large files)
+models/*.pkl
+models/*.pt
+
+# Data (handled by DVC later)
+data/
+
+# DVC
+.dvc/
+
+# OS
+.DS_Store
