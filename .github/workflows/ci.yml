@@ -1,0 +1,31 @@
+name: Driving Risk CI
+
+on:
+  push:
+    branches: [ main, dev ]
+  pull_request:
+    branches: [ main, dev ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.10
+
+    - name: Install Dependencies
+      run: |
+        pip install -r requirements.txt
+        pip install pylint
+
+    - name: Run Pylint
+      run: python -m pylint app.py ml_pipeline/ || true
+
+    - name: Run Tests
+      run: python -m unittest discover tests
